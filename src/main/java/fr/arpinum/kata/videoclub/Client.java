@@ -35,7 +35,7 @@ public class Client {
 				if (location.getJoursLoués() > 2)
 					montantCourant += (location.getJoursLoués() - 2) * 1.5;
 				break;
-			case Film.NOUVELLE_SORTIE:
+			case Film.NOUVEAUTE:
 				montantCourant += location.getJoursLoués() * 3;
 				break;
 			case Film.ENFANTS:
@@ -49,7 +49,7 @@ public class Client {
 			// ajout des points locataire régulier
 			pointsLocataireRégulier++;
 			// ajout d'un bonus pour location de deux jours d'une nouveauté
-			if (location.getFilm().getCodePrix() == Film.NOUVELLE_SORTIE
+			if (location.getFilm().getCodePrix() == Film.NOUVEAUTE
 					&& location.getJoursLoués() > 1)
 				pointsLocataireRégulier++;
 			
@@ -60,7 +60,7 @@ public class Client {
 		}
 		// ajout des lignes de footer
 		résultat += "Le montant dû est " + String.valueOf(montantTotal) + "\n";
-		résultat += "Vous avez gagné " + String.valueOf(pointsLocataireRégulier) + "points de fidélité";
+		résultat += "Vous avez gagné " + String.valueOf(pointsLocataireRégulier) + " points de fidélité";
 		return résultat;
 	}
 }
