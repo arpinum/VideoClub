@@ -100,6 +100,20 @@ public class TestsClient {
 				+ "Le montant dû est 5.0\n"
 				+ "Vous avez gagné 2 points de fidélité"));
 	}
+	
+	@Test
+	public void peutDemanderLeRésuméEnHtml() {
+		client.ajouteLocation(new Location(filmNouveauté(), 1));
+		client.ajouteLocation(new Location(filmNormal(), 1));
+
+		String résumé = client.résuméEnHtml();
+
+		assertThat(résumé, is("<h1>Liste des locations pour <span>Jb Dusseaut</span></h1>\n"
+				+ "<p>The social network 3.0</p>\n" 
+				+ "<p>The social network 2.0</p>\n" 
+				+ "<p>Le montant dû est 5.0</p>\n"
+				+ "<p>Vous avez gagné 2 points de fidélité</p>"));
+	}
 
 	private Film filmNouveauté() {
 		return film(Film.NOUVEAUTE);

@@ -22,45 +22,45 @@ public class Client {
 	}
 
 	public String résumé() {
-		double montantTotal = 0;
-		int pointsLocataireRégulier = 0;
 		String résultat = "Liste des locations pour " + getNom() + "\n";
 		for (Location location : locations) {
-			double montantCourant = 0;
-
-			// détermine le montant pour chaque location
-			switch (location.getFilm().getCodePrix()) {
-			case Film.NORMAL:
-				montantCourant += 2;
-				if (location.getJoursLoués() > 2)
-					montantCourant += (location.getJoursLoués() - 2) * 1.5;
-				break;
-			case Film.NOUVEAUTE:
-				montantCourant += location.getJoursLoués() * 3;
-				break;
-			case Film.ENFANTS:
-				montantCourant += 1.5;
-				if (location.getJoursLoués() > 3) {
-					montantCourant += (location.getJoursLoués() - 3) * 1.5;
-				}
-				break;
-			}
-
-			// ajout des points locataire régulier
-			pointsLocataireRégulier++;
-			// ajout d'un bonus pour location de deux jours d'une nouveauté
-			if (location.getFilm().getCodePrix() == Film.NOUVEAUTE
-					&& location.getJoursLoués() > 1)
-				pointsLocataireRégulier++;
-			
-			// montre le résultat pour cette location
-			résultat += "\t" + location.getFilm().getTitre() + "\t" + 
-				String.valueOf(montantCourant) + "\n";
-			montantTotal += montantCourant;
+			résultat += "\t" + location.getFilm().getTitre() + "\t"
+					+ String.valueOf(location.montant()) + "\n";
 		}
-		// ajout des lignes de footer
-		résultat += "Le montant dû est " + String.valueOf(montantTotal) + "\n";
-		résultat += "Vous avez gagné " + String.valueOf(pointsLocataireRégulier) + " points de fidélité";
+		résultat += "Le montant dû est " + String.valueOf(montantTotal()) + "\n";
+		résultat += "Vous avez gagné "
+				+ String.valueOf(pointsDeFidélité())
+				+ " points de fidélité";
 		return résultat;
 	}
+	
+	public String résuméEnHtml() {
+		String résultat = "<h1>Liste des locations pour <span>" + getNom() + "</span></h1>\n";
+		for (Location location : locations) {
+			résultat += "<p>" + location.getFilm().getTitre() + " "
+					+ String.valueOf(location.montant()) + "</p>\n";
+		}
+		résultat += "<p>Le montant dû est " + String.valueOf(montantTotal()) + "</p>\n";
+		résultat += "<p>Vous avez gagné "
+				+ String.valueOf(pointsDeFidélité())
+				+ " points de fidélité</p>";
+		return résultat;
+	}
+
+	private int pointsDeFidélité() {
+		int pointsDeFidélités = 0;
+		for (Location location : locations) {
+			pointsDeFidélités+=location.pointsDeFidélités();
+		}
+		return pointsDeFidélités;
+	}
+
+	private double montantTotal() {
+		double montantTotal = 0;
+		for (Location location : locations) {
+			montantTotal += location.montant();
+		}
+		return montantTotal;
+	}
+
 }
