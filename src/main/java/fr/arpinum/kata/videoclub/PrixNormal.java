@@ -1,10 +1,12 @@
 package fr.arpinum.kata.videoclub;
 
+import fr.arpinum.kata.videoclub.Film.TypePrix;
+
 public class PrixNormal extends Prix {
 
 	@Override
-	public int getCodePrix() {
-		return Film.NORMAL;
+	public TypePrix getTypePrix() {
+		return TypePrix.NORMAL;
 	}
 	
 	@Override

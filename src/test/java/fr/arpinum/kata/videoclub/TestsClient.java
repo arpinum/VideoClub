@@ -6,6 +6,8 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import fr.arpinum.kata.videoclub.Film.TypePrix;
+
 public class TestsClient {
 
 	private Client client;
@@ -116,18 +118,18 @@ public class TestsClient {
 	}
 
 	private Film filmNouveauté() {
-		return film(Film.NOUVEAUTE);
+		return film(TypePrix.NOUVEAUTE);
 	}
 
 	private Film filmEnfant() {
-		return film(Film.ENFANTS);
+		return film(TypePrix.ENFANTS);
 	}
 
 	private Film filmNormal() {
-		return film(Film.NORMAL);
+		return film(TypePrix.NORMAL);
 	}
 
-	private Film film(int type) {
+	private Film film(TypePrix type) {
 		return new Film("The social network", type);
 	}
 
