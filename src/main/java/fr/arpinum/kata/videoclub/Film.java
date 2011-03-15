@@ -2,27 +2,27 @@ package fr.arpinum.kata.videoclub;
 
 public class Film {
 
-	public static final int ENFANTS = 2;
-	public static final int NORMAL = 0;
-	public static final int NOUVEAUTE = 1;
+	public enum TypePrix {
+		ENFANTS, NORMAL, NOUVEAUTE
+	};
 	
 	private String titre;
-	private int codePrix;
+	private TypePrix type;
 	
-	public Film(String titre, int codePrix) {
+	public Film(String titre, TypePrix type) {
 		this.titre = titre;
-		this.codePrix = codePrix;
+		this.type = type;
 	}
 	
 	public String getTitre() {
 		return titre;
 	}
 	
-	public int getCodePrix() {
-		return codePrix;
+	public TypePrix getTypePrix() {
+		return type;
 	}
 	
-	public void setCodePrix(int codePrix) {
-		this.codePrix = codePrix;
+	public void setCodePrix(TypePrix type) {
+		this.type = type;
 	}
 }
