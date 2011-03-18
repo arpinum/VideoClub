@@ -2,16 +2,12 @@ package fr.arpinum.kata.videoclub;
 
 public class Film {
 
-	public enum TypePrix {
-		ENFANTS, NORMAL, NOUVEAUTE
-	}
-
-	private String titre;
+	private final String titre;
 	private Prix prix;
 
-	public Film(String titre, TypePrix typePrix) {
+	public Film(final String titre, final TypePrix typePrix) {
 		this.titre = titre;
-		 setTypePrix(typePrix);
+		prix = typePrix.nouveauPrix();
 	}
 
 	public String getTitre() {
@@ -22,25 +18,15 @@ public class Film {
 		return prix.getTypePrix();
 	}
 
-	public void setTypePrix(TypePrix typePrix) {
-		switch (typePrix) {
-		case ENFANTS:
-			prix = new PrixEnfant();
-			break;
-		case NORMAL :
-			prix = new PrixNormal();
-			break;
-		case NOUVEAUTE:
-			prix = new PrixNouveaute();
-			break;
-		}
+	public void setTypePrix(final TypePrix typePrix) {
+		prix = typePrix.nouveauPrix();
 	}
 
-	public double montantPour(int joursLoués) {
+	public double montantPour(final int joursLoués) {
 		return prix.montantPour(joursLoués);
 	}
 
-	public int pointsDeFidélitéPour(int joursLoués) {
+	public int pointsDeFidélitéPour(final int joursLoués) {
 		return prix.pointsDeFidélitéPour(joursLoués);
 	}
 }

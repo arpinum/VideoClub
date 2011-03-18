@@ -2,10 +2,10 @@ package fr.arpinum.kata.videoclub;
 
 public class Location {
 
-	private Film film;
-	private int joursLoués;
+	private final Film film;
+	private final int joursLoués;
 
-	public Location(Film film, int joursLoués) {
+	public Location(final Film film, final int joursLoués) {
 		this.film = film;
 		this.joursLoués = joursLoués;
 	}
