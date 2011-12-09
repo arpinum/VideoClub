@@ -2,19 +2,27 @@ package fr.arpinum.kata.videoclub;
 
 public class Location {
 
-	private Film film;
-	private int joursLoués;
-	
-	public Location(Film film, int joursLoués) {
-		this.film = film;
-		this.joursLoués = joursLoués;
-	}
-	
-	public int getJoursLoués() {
-		return joursLoués;
-	}
-	
-	public Film getFilm() {
-		return film;
-	}
+    double montant() {
+        return film.montantPour(getJoursLoués());
+    }
+
+    public Location(Film film, int joursLoués) {
+        this.film = film;
+        this.joursLoués = joursLoués;
+    }
+
+    public int getJoursLoués() {
+        return joursLoués;
+    }
+
+    public Film getFilm() {
+        return film;
+    }
+
+    int pointsDeFidélité() {
+        return film.pointsDeFidélitésPour(getJoursLoués());
+    }
+
+    private Film film;
+    private int joursLoués;
 }
