@@ -22,7 +22,7 @@ public class Film {
 		return type;
 	}
 	
-	public void setCodePrix(TypePrix type) {
+	public void setTypePrix(TypePrix type) {
 		this.type = type;
 	}
 }
