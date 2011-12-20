@@ -27,79 +27,71 @@ public class TestsClient {
 	public void peutCalculerRésuméPourFilmNormal() {
 		client.ajouteLocation(new Location(filmNormal(), 1));
 
-		String résumé = client.résumé();
+		final String résumé = client.résumé();
 
-		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n"
-				+ "\tThe social network\t2.0\n" + "Le montant dû est 2.0\n"
-				+ "Vous avez gagné 1 points de fidélité"));
+		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n" + "\tThe social network\t2.0\n"
+				+ "Le montant dû est 2.0\n" + "Vous avez gagné 1 points de fidélité"));
 	}
 
 	@Test
 	public void peutCalculerRésuméPourNouveauté() {
 		client.ajouteLocation(new Location(filmNouveauté(), 1));
 
-		String résumé = client.résumé();
+		final String résumé = client.résumé();
 
-		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n"
-				+ "\tThe social network\t3.0\n" + "Le montant dû est 3.0\n"
-				+ "Vous avez gagné 1 points de fidélité"));
+		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n" + "\tThe social network\t3.0\n"
+				+ "Le montant dû est 3.0\n" + "Vous avez gagné 1 points de fidélité"));
 	}
 
 	@Test
-	public void peutCalculerRésuméPourFilmeEnfant() {
+	public void peutCalculerRésuméPourFilmEnfant() {
 		client.ajouteLocation(new Location(filmEnfant(), 1));
 
-		String résumé = client.résumé();
+		final String résumé = client.résumé();
 
-		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n"
-				+ "\tThe social network\t1.5\n" + "Le montant dû est 1.5\n"
-				+ "Vous avez gagné 1 points de fidélité"));
+		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n" + "\tThe social network\t1.5\n"
+				+ "Le montant dû est 1.5\n" + "Vous avez gagné 1 points de fidélité"));
 	}
 
 	@Test
 	public void peutCalculerPénalitéSurFilmNormal() {
 		client.ajouteLocation(new Location(filmNormal(), 3));
 
-		String résumé = client.résumé();
+		final String résumé = client.résumé();
 
-		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n"
-				+ "\tThe social network\t3.5\n" + "Le montant dû est 3.5\n"
-				+ "Vous avez gagné 1 points de fidélité"));
+		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n" + "\tThe social network\t3.5\n"
+				+ "Le montant dû est 3.5\n" + "Vous avez gagné 1 points de fidélité"));
 	}
 
 	@Test
 	public void peutCalculerPénalitéSurFilmEnfant() {
 		client.ajouteLocation(new Location(filmEnfant(), 4));
 
-		String résumé = client.résumé();
+		final String résumé = client.résumé();
 
-		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n"
-				+ "\tThe social network\t3.0\n" + "Le montant dû est 3.0\n"
-				+ "Vous avez gagné 1 points de fidélité"));
+		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n" + "\tThe social network\t3.0\n"
+				+ "Le montant dû est 3.0\n" + "Vous avez gagné 1 points de fidélité"));
 	}
 
 	@Test
 	public void peutCalculerPointsFidélitéPourNouveauté() {
 		client.ajouteLocation(new Location(filmNouveauté(), 3));
 
-		String résumé = client.résumé();
+		final String résumé = client.résumé();
 
-		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n"
-				+ "\tThe social network\t9.0\n" + "Le montant dû est 9.0\n"
-				+ "Vous avez gagné 2 points de fidélité"));
+		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n" + "\tThe social network\t9.0\n"
+				+ "Le montant dû est 9.0\n" + "Vous avez gagné 2 points de fidélité"));
 	}
-	
+
 	@Test
 	public void peutCumulerLesPointsEtLePrix() {
 		client.ajouteLocation(new Location(filmNouveauté(), 1));
 		client.ajouteLocation(new Location(filmNormal(), 1));
 
-		String résumé = client.résumé();
+		final String résumé = client.résumé();
 
-		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n"
-				+ "\tThe social network\t3.0\n" 
-				+ "\tThe social network\t2.0\n" 
-				+ "Le montant dû est 5.0\n"
+		assertThat(résumé, is("Liste des locations pour Jb Dusseaut\n" + "\tThe social network\t3.0\n"
+				+ "\tThe social network\t2.0\n" + "Le montant dû est 5.0\n"
 				+ "Vous avez gagné 2 points de fidélité"));
 	}
 
@@ -115,12 +107,11 @@ public class TestsClient {
 		return film(TypePrix.NORMAL);
 	}
 
-	private Film film(TypePrix typePrix) {
+	private Film film(final TypePrix typePrix) {
 		return new Film("The social network", typePrix);
 	}
 
 	private Client clientSimple() {
-		Client client = new Client("Jb Dusseaut");
-		return client;
+		return new Client("Jb Dusseaut");
 	}
 }
