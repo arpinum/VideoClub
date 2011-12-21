@@ -95,6 +95,18 @@ public class TestsClient {
 				+ "Vous avez gagné 2 points de fidélité"));
 	}
 
+	@Test
+	public void peutObtenirRésuméHtml() {
+		client.ajouteLocation(new Location(filmNouveauté(), 1));
+		client.ajouteLocation(new Location(filmNormal(), 1));
+
+		final String résumé = client.résuméHtml();
+
+		assertThat(résumé, is("<h1>Liste des locations pour Jb Dusseaut</h1>\n" + "<p>The social network 3.0</p>\n"
+				+ "<p>The social network 2.0</p>\n" + "<p>Le montant dû est 5.0</p>\n"
+				+ "<p>Vous avez gagné 2 points de fidélité</p>"));
+	}
+
 	private Film filmNouveauté() {
 		return film(TypePrix.NOUVEAUTE);
 	}
